@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Project Portfolio
+title: Simon Harrington
 email: simon.a.harrington@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   My name is Simon Harrington. I am a current CS major in a transfer program where I spend 3 years learning CS at one college
@@ -22,6 +22,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 # baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://catpotato42.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  catpotato42
+
+#copyright override message
+copyright: "© 2025 Simon Harrington"
 
 # Build settings
 markdown: kramdown
