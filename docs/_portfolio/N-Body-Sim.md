@@ -4,7 +4,7 @@ title:  "N-Body Simulation - Third Project"
 thumbnail: /assets/img/NBody-thumbnail.png
 ---
 
-Around mid October to early November, I worked on a project with one other person that takes in various initial states of the N-Body problem and uses an
+From October to November 2025, I worked on a project with one other person that takes in various initial states of the N-Body problem and uses an
 initial value problem solver created from scratch as well as the win32 API library to return a visual simulation.
 
 I created the UI and visual aspect and tweaked the algorithm throughout to do things like take in a relative speed. 
