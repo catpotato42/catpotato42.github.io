@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Anderson Snake - First Project"
+title:  "Anderson Snake"
 thumbnail: /assets/img/AS-thumbnail.png
 ---
 

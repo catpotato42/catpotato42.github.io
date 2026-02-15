@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "N-Body Simulation - Third Project"
+title:  "N-Body Simulation"
 thumbnail: /assets/img/NBody-thumbnail.png
 ---
 

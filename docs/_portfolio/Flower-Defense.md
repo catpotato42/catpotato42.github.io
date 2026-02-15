@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Flower Defense - Second Project"
+title:  "Flower Defense"
 thumbnail: /assets/img/FD-thumbnail.png
 ---
 
