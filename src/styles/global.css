@@ -1,0 +1,22 @@
+:root {
+  --bg0: #2d353b;
+  --bg1: #343f44;
+  --bg3: #475258;
+  --fg: #d3c6aa;
+  --grey2: #9da9a0;
+  --green: #a7c080;
+  --aqua: #83c092;
+  --yellow: #dbbc7f;
+  /* TODO: self-host Monaspace Neon, put it first */
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+}
+
+html { background: var(--bg0); color: var(--fg); font-family: var(--mono); line-height: 1.6; }
+body { margin: 0; }
+main { max-width: 72ch; margin: 0 auto; padding: 2rem 1rem; }
+a { color: var(--green); }
+img, video { max-width: 100%; height: auto; }
+.meta { color: var(--grey2); }
+.stack { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; color: var(--aqua); }
+.projects { list-style: none; padding: 0; }
+.projects > li { background: var(--bg1); border: 1px solid var(--bg3); padding: 1rem; margin-bottom: 1rem; }

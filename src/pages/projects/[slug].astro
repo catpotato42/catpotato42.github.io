@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import { fmtRange, fmtTeam } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => import.meta.env.DEV || !data.draft);
+  return projects.map((p) => ({ params: { slug: p.id }, props: { p } }));
+}
+
+const { p } = Astro.props;
+const { Content } = await render(p);
+const strip = (u: string) => u.replace(/^https?:\/\//, '');
+---
+<Base title={`${p.data.title} - Simon Harrington`}>
+  <a href="/">&larr; home</a>
+  <h1>{p.data.title}</h1>
+  <dl class="meta">
+    <dt>dates</dt><dd>{fmtRange(p.data.start, p.data.end)}</dd>
+    <dt>team</dt><dd>{fmtTeam(p.data.team)}</dd>
+    {p.data.role && <><dt>role</dt><dd>{p.data.role}</dd></>}
+    <dt>stack</dt><dd>{p.data.stack.join(', ')}</dd>
+    {p.data.repo && <><dt>repo</dt><dd><a href={p.data.repo}>{strip(p.data.repo)}</a></dd></>}
+    {p.data.itch && <><dt>itch</dt><dd><a href={p.data.itch}>{strip(p.data.itch)}</a></dd></>}
+  </dl>
+  {p.data.video
+    ? <a href={p.data.video}><Image src={p.data.cover} alt={p.data.coverAlt} /></a>
+    : <Image src={p.data.cover} alt={p.data.coverAlt} />}
+  <Content />
+</Base>

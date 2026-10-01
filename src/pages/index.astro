@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { fmtRange, fmtTeam } from '../lib/format';
+
+const projects = (
+  await getCollection('projects', ({ data }) => import.meta.env.DEV || !data.draft)
+).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Simon Harrington">
+  <header>
+    <h1>Simon Harrington</h1>
+    <p>TODO positioning line</p>
+    <nav>
+      <a href="/about/">about</a>
+      <!-- TODO: uncomment once public/resume.pdf exists -->
+      <!-- <a href="/resume.pdf">résumé</a> -->
+      <a href="https://github.com/catpotato42">github</a>
+      <a href="mailto:simon.a.harrington@gmail.com">email</a>
+    </nav>
+  </header>
+  <ul class="projects">
+    {projects.map((p) => (
+      <li>
+        <a href={`/projects/${p.id}/`}>{p.data.title}</a>
+        <div class="meta">{fmtRange(p.data.start, p.data.end)} · {fmtTeam(p.data.team)}</div>
+        <p>{p.data.summary}</p>
+        <ul class="stack">{p.data.stack.map((s) => <li>{s}</li>)}</ul>
+      </li>
+    ))}
+  </ul>
+</Base>
