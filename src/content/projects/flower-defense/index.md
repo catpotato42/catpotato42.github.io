@@ -1,6 +1,6 @@
 ---
 title: Flower Defense
-summary: 3D tower defense in Unreal, written entirely in C++ instead of Blueprints. # TODO review
+summary: "Unreal tower defense written in C++, including mortar projectile trajectory calculation."
 start: "2025-05"
 end: "2025-08"
 status: shipped
@@ -10,6 +10,6 @@ stack: [Unreal Engine, C++]
 repo: https://github.com/Catpotato42/Farming_Tower
 itch: https://ember44.itch.io/flower-defense
 cover: ./FD-main.png
-coverAlt: TODO
+coverAlt: "Tower defense level at round 9: dirt paths and a river lined with plant towers, with a plant shop bar along the bottom."
 order: 2
 ---
