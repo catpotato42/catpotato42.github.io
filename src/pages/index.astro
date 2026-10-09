@@ -1,11 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { fmtRange, fmtTeam } from '../lib/format';
 
 const projects = (
   await getCollection('projects', ({ data }) => import.meta.env.DEV || !data.draft)
 ).sort((a, b) => a.data.order - b.data.order);
+
+const email = 'simon.a.harrington@gmail.com';
 ---
 <Base title="Simon Harrington">
   <header>
@@ -16,20 +19,64 @@ const projects = (
       <!-- TODO: uncomment once public/resume.pdf exists -->
       <!-- <a href="/resume.pdf">résumé</a> -->
       <a href="https://github.com/catpotato42">github</a>
-      <a href="mailto:simon.a.harrington@gmail.com">email</a>
+      <span class="email">
+        <button type="button" class="addr" data-copy={email} aria-label={`copy ${email}`}>{email}</button>
+        <button type="button" class="copy" data-copy={email} aria-label={`copy ${email}`}>
+          <svg class="i-copy" viewBox="0 0 24 24" width="15" height="15" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="12" height="12" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+          <svg class="i-check" viewBox="0 0 24 24" width="15" height="15" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </button>
+      </span>
     </nav>
   </header>
   <ul class="projects">
-    {projects.map((p) => (
-      <li>
-        <a href={`/projects/${p.id}/`}>{p.data.title}</a>
-        <div class="meta">
-          {fmtRange(p.data.start, p.data.end)} · {fmtTeam(p.data.team)}
-          {p.data.status !== 'shipped' && <span class={`status ${p.data.status}`}>{' · '}{p.data.status}</span>}
-        </div>
-        <p>{p.data.summary}</p>
-        <ul class="stack">{p.data.stack.map((s) => <li>{s}</li>)}</ul>
-      </li>
-    ))}
+    {projects.map((p) => {
+      const art = p.data.thumb ?? p.data.cover;
+      const artAlt = p.data.thumb ? p.data.thumbAlt! : p.data.coverAlt!;
+      return (
+        <li>
+          {art && (
+            <a class="thumb" href={`/projects/${p.id}/`}>
+              {/* designed thumbnails are small on purpose; only downscale the cover fallback */}
+              {p.data.thumb
+                ? <Image src={art} alt={artAlt} />
+                : <Image src={art} alt={artAlt} width={600} densities={[1, 2]} />}
+            </a>
+          )}
+          <div class="card">
+            <a class="card-title" href={`/projects/${p.id}/`}>{p.data.title}</a>
+            <div class="meta">
+              {fmtRange(p.data.start, p.data.end)} · {fmtTeam(p.data.team)}
+              {p.data.status !== 'shipped' && <span class={`status ${p.data.status}`}>{' · '}{p.data.status}</span>}
+            </div>
+            <p>{p.data.summary}</p>
+            <ul class="stack">{p.data.stack.map((s) => <li>{s}</li>)}</ul>
+          </div>
+        </li>
+      );
+    })}
   </ul>
 </Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+        const group = btn.closest('.email') ?? btn;
+        group.classList.add('copied');
+        setTimeout(() => group.classList.remove('copied'), 1500);
+      } catch {
+        // clipboard unavailable; the address is still readable beside the button
+      }
+    });
+  });
+</script>

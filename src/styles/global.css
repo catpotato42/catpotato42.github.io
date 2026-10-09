@@ -20,16 +20,75 @@
 
 html { background: var(--bg0); color: var(--fg); font-family: var(--mono); line-height: 1.6; }
 body { margin: 0; }
-main { max-width: 72ch; margin: 0 auto; padding: 2rem 1rem; }
+
+/* The shell is wide enough for two project cards or a row of clips.
+   Prose is pulled back to a 72ch measure. */
+main { max-width: 100ch; margin: 0 auto; padding: 2rem 1rem; }
+main > h1, main > p, main > dl, main > blockquote, header p { max-width: 72ch; }
+
 a { color: var(--green); }
 img, video { max-width: 100%; height: auto; }
 .meta { color: var(--grey2); }
 .stack { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; color: var(--aqua); }
-.projects { list-style: none; padding: 0; }
-.projects > li { background: var(--bg1); border: 1px solid var(--bg3); padding: 1rem; margin-bottom: 1rem; }
 .status { color: var(--grey2); }
 .status.in-progress { color: var(--yellow); }
-.meta dd { margin-left: 0; }
-video { display: block; margin: 1rem 0; border: 1px solid var(--bg3); }
-.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1rem 0; }
-.shots img { display: block; width: 100%; border: 1px solid var(--bg3); background: var(--bg1); }
+
+/* nav */
+nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; }
+.email { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; min-width: 0; }
+button.addr, button.copy {
+  background: none; border: 0; padding: 0;
+  font: inherit; color: var(--grey2); cursor: pointer;
+}
+/* keep the address selectable; it is the fallback when the clipboard API is blocked */
+button.addr { color: var(--fg); overflow-wrap: anywhere; text-align: left; user-select: text; }
+button.addr:hover, button.addr:focus-visible { color: var(--green); }
+button.copy {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem;
+  background: var(--bg1); border: 1px solid var(--bg3); border-radius: 3px;
+}
+button.copy:hover, button.copy:focus-visible { color: var(--fg); border-color: var(--grey2); }
+.email .i-check, .email.copied .i-copy { display: none; }
+.email.copied .i-check { display: block; }
+.email.copied button.addr, .email.copied button.copy { color: var(--green); }
+.email.copied button.copy { border-color: var(--green); }
+
+/* project list: two across when the viewport allows, one when it does not */
+.projects {
+  list-style: none; padding: 0; margin: 2rem 0 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr)); gap: 1rem;
+}
+.projects > li {
+  display: flex; flex-direction: column;
+  background: var(--bg1); border: 1px solid var(--bg3); padding: 1rem;
+}
+/* uniform well so mismatched thumbnail ratios still line up; image centred, never cropped */
+.projects .thumb {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 16 / 10; margin-bottom: 0.75rem; overflow: hidden;
+  background: var(--bg0); border: 1px solid var(--bg3);
+}
+.projects .thumb img { max-height: 100%; width: auto; object-fit: contain; }
+.projects .card { display: flex; flex-direction: column; flex: 1 1 auto; }
+.projects .card-title { display: inline-block; margin-bottom: 0.25rem; }
+.projects .card p { margin: 0.5rem 0; }
+.projects .card .stack { margin-top: auto; padding-top: 0.5rem; }
+
+/* project page metadata */
+dl.meta {
+  display: grid; grid-template-columns: max-content 1fr;
+  column-gap: 0.75rem; row-gap: 0.25rem; margin: 1.5rem 0;
+}
+dl.meta dt { color: var(--grey2); }
+dl.meta dt::after { content: ':'; }
+dl.meta dd { margin: 0; color: var(--fg); overflow-wrap: anywhere; }
+
+/* cover and clips share one row, as they did on the old site */
+.media, .shots {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem; margin: 1.5rem 0;
+}
+.media img, .media video, .shots img {
+  display: block; width: 100%; border: 1px solid var(--bg3); background: var(--bg0);
+}

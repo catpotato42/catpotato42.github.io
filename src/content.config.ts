@@ -24,6 +24,9 @@ const projects = defineCollection({
         video: z.string().url().optional(),
         cover: image().optional(),
         coverAlt: z.string().optional(),
+        // designed card thumbnail; falls back to cover on the home page
+        thumb: image().optional(),
+        thumbAlt: z.string().optional(),
         // base filename in public/media/<slug>/, without extension
         clips: z.array(z.object({ name: z.string(), alt: z.string() })).default([]),
         shots: z.array(z.object({ src: image(), alt: z.string() })).default([]),
@@ -32,6 +35,9 @@ const projects = defineCollection({
       })
       .refine((d) => d.draft || (d.cover && d.coverAlt), {
         message: 'non-draft entries need cover and coverAlt',
+      })
+      .refine((d) => !d.thumb || d.thumbAlt, {
+        message: 'thumb needs thumbAlt',
       }),
 });
 

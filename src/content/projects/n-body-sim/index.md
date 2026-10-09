@@ -13,6 +13,8 @@ clips:
     alt: TODO
   - name: NBody-main3
     alt: TODO
+thumb: ./NBody-thumbnail.png
+thumbAlt: "Three bodies, blue, green and red, on black, each trailing a looping curve that crosses the others."
 cover: ./NBody-main1.png
 coverAlt: "Simulation window with three bodies, blue, green and red, tracing orbit trails on a black background at frame 994 of 2000."
 order: 1

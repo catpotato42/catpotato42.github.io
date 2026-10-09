@@ -8,6 +8,8 @@ team: solo
 stack: [Unity]
 repo: https://github.com/Catpotato42/Anderson-Snake
 itch: https://catpotato42.itch.io/anderson-snake
+thumb: ./AS-thumbnail.png
+thumbAlt: "Anderson Snake title card: the words Anderson Snake in red pixel lettering over a grey tiled grid, with an acorn pickup and pink snake segments."
 cover: ./AS-main.png
 coverAlt: "Snake on a 6 by 6 grid with a pink body and an acorn pickup, beside score, high score and timer panels."
 order: 5
