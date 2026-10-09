@@ -23,7 +23,10 @@ const projects = (
     {projects.map((p) => (
       <li>
         <a href={`/projects/${p.id}/`}>{p.data.title}</a>
-        <div class="meta">{fmtRange(p.data.start, p.data.end)} · {fmtTeam(p.data.team)}</div>
+        <div class="meta">
+          {fmtRange(p.data.start, p.data.end)} · {fmtTeam(p.data.team)}
+          {p.data.status !== 'shipped' && <span class={`status ${p.data.status}`}>{' · '}{p.data.status}</span>}
+        </div>
         <p>{p.data.summary}</p>
         <ul class="stack">{p.data.stack.map((s) => <li>{s}</li>)}</ul>
       </li>

@@ -10,5 +10,12 @@ repo: https://github.com/Catpotato42/valorant-cosmetic-overlay
 video: https://youtu.be/ESXkvh8fS-U
 cover: ./valorant-overlay-main.png
 coverAlt: "Valorant shooting range with the overlay on top: outlined regions labeled Kill Banners, Animation and Weapon Icons, and a small blue character sitting on the gun."
-order: 3
+order: 4
 ---
+
+From January to February 2026, I worked on an overlay program in C# for Valorant that responds to in game events.
+
+Using the basic functions of C# .NET, I created a borderless window that sits on top of Valorant, checking every half second for a line of pixels matching colors that show up in a specific region 
+when the user gets a kill or switches weapons. [github](https://github.com/Catpotato42/valorant-cosmetic-overlay)
+
+[youtube video showcase](https://www.youtube.com/watch?v=ESXkvh8fS-U)

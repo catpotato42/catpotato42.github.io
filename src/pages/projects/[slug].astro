@@ -17,15 +17,32 @@ const strip = (u: string) => u.replace(/^https?:\/\//, '');
   <a href="/">&larr; home</a>
   <h1>{p.data.title}</h1>
   <dl class="meta">
-    <dt>dates</dt><dd>{fmtRange(p.data.start, p.data.end)}</dd>
+    <dt>dates</dt>
+    <dd>
+      {fmtRange(p.data.start, p.data.end)}
+      {p.data.status !== 'shipped' && <span class={`status ${p.data.status}`}>{' · '}{p.data.status}</span>}
+    </dd>
     <dt>team</dt><dd>{fmtTeam(p.data.team)}</dd>
     {p.data.role && <><dt>role</dt><dd>{p.data.role}</dd></>}
     <dt>stack</dt><dd>{p.data.stack.join(', ')}</dd>
     {p.data.repo && <><dt>repo</dt><dd><a href={p.data.repo}>{strip(p.data.repo)}</a></dd></>}
     {p.data.itch && <><dt>itch</dt><dd><a href={p.data.itch}>{strip(p.data.itch)}</a></dd></>}
+    {p.data.video && <><dt>video</dt><dd><a href={p.data.video}>{strip(p.data.video)}</a></dd></>}
   </dl>
-  {p.data.video
-    ? <a href={p.data.video}><Image src={p.data.cover} alt={p.data.coverAlt} /></a>
-    : <Image src={p.data.cover} alt={p.data.coverAlt} />}
+  {p.data.cover && (p.data.video
+    ? <a href={p.data.video}><Image src={p.data.cover} alt={p.data.coverAlt!} /></a>
+    : <Image src={p.data.cover} alt={p.data.coverAlt!} />)}
   <Content />
+  {p.data.clips.map((c) => (
+    <video autoplay muted loop playsinline preload="metadata"
+           poster={`/media/${p.id}/${c.name}-poster.png`} aria-label={c.alt}>
+      <source src={`/media/${p.id}/${c.name}.webm`} type="video/webm" />
+      <source src={`/media/${p.id}/${c.name}.mp4`} type="video/mp4" />
+    </video>
+  ))}
+  {p.data.shots.length > 0 && (
+    <div class="shots">
+      {p.data.shots.map((s) => <Image src={s.src} alt={s.alt} />)}
+    </div>
+  )}
 </Base>
