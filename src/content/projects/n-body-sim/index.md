@@ -10,9 +10,9 @@ stack: [C++, Win32, GDI+]
 repo: https://github.com/Catpotato42/N-Body-Problem-2D-Collab
 clips:
   - name: NBody-main2
-    alt: TODO
+    alt: "Three bodies, green, red and blue, looping around each other and trailing fading orbit paths, with the frame counter climbing past 364 of 1000."
   - name: NBody-main3
-    alt: TODO
+    alt: "The settings form for body count, simulated time and relative speed, then three bodies, blue, red and green, released in a line and drifting apart across the black window."
 thumb: ./NBody-thumbnail.png
 thumbAlt: "Three bodies, blue, green and red, on black, each trailing a looping curve that crosses the others."
 cover: ./NBody-main1.png
