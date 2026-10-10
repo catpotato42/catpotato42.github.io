@@ -28,4 +28,4 @@ The simulation takes in real-world accurate values for mass, velocity,
 and distances and uses an accurate gravitational constant. This means that simulations like the real behavior of earth and the moon (assuming a closed system) are possible.
 
 The main limitation of this project is the speed that the output runs at, as I used built-in GDI+ graphics which use the CPU, not GPU to display frames. Note that the
-GIFs below are sped up, with both being at around 2x speed. [github](https://github.com/Catpotato42/N-Body-Problem-2D-Collab)
+GIFs below are sped up, with both being at around 2x speed.

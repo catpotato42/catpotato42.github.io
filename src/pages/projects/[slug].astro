@@ -11,7 +11,6 @@ export async function getStaticPaths() {
 
 const { p } = Astro.props;
 const { Content } = await render(p);
-const strip = (u: string) => u.replace(/^https?:\/\//, '');
 ---
 <Base title={`${p.data.title} - Simon Harrington`}>
   <a href="/">&larr; home</a>
@@ -25,14 +24,20 @@ const strip = (u: string) => u.replace(/^https?:\/\//, '');
     <dt>team</dt><dd>{fmtTeam(p.data.team)}</dd>
     {p.data.role && <><dt>role</dt><dd>{p.data.role}</dd></>}
     <dt>stack</dt><dd>{p.data.stack.join(', ')}</dd>
-    {p.data.repo && <><dt>repo</dt><dd><a href={p.data.repo}>{strip(p.data.repo)}</a></dd></>}
-    {p.data.itch && <><dt>itch</dt><dd><a href={p.data.itch}>{strip(p.data.itch)}</a></dd></>}
-    {p.data.video && <><dt>video</dt><dd><a href={p.data.video}>{strip(p.data.video)}</a></dd></>}
+    {(p.data.repo || p.data.itch) && (
+      <>
+        <dt>links</dt>
+        <dd class="links">
+          {p.data.repo && <a href={p.data.repo}>github</a>}
+          {p.data.itch && <a href={p.data.itch}>itch.io</a>}
+        </dd>
+      </>
+    )}
   </dl>
   <Content />
-  {(p.data.cover || p.data.clips.length > 0) && (
+  {((p.data.cover && p.data.shots.length === 0) || p.data.clips.length > 0) && (
     <div class="media">
-      {p.data.cover && (
+      {p.data.cover && p.data.shots.length === 0 && (
         <Image src={p.data.cover} alt={p.data.coverAlt!} widths={[480, 960]}
                sizes={p.data.clips.length > 0 ? '(max-width: 62rem) 100vw, 20rem' : '(max-width: 62rem) 100vw, 60rem'} />
       )}

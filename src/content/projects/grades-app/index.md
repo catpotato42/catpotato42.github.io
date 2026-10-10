@@ -30,4 +30,6 @@ order: 2
 draft: false
 ---
 
-I wrote this grades app as a more user-friendly layer on top of any existing grading system, because as a student there were some features the canvas mobile app lacked that I liked. It includes what-if grades, what-if gpa, reminders for assignments due in x minutes, user customization of those features, and more. However, I was unfortunately unable to get a developer key from canvas, skyward or any other platform or school district I reached out to, which was necessary. In the future i might try scraping the data, as many learning management system have poorly reviewed apps, but for now it's shelved to focus on other projects.
+I wrote this grades app as a more user-friendly layer on top of any existing grading system, because as a student there were some features the canvas mobile app lacked that I liked. It includes what-if grades, what-if gpa, reminders for assignments due in x minutes, user customization of those features, and more.
+
+However, I was unfortunately unable to get a developer key from canvas, skyward or any other platform or school district I reached out to, which killed it. In the future I might try scraping the data, as many learning management systems have poorly reviewed apps, but for now it's shelved to focus on other projects.

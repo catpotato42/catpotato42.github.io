@@ -18,4 +18,5 @@ order: 3
 
 From May-August 2025, I was the lead programmer on a two person team making a plant based 3D tower defense game in Unreal Engine. I used C++ exclusively instead of the 
 built-in blueprint system to develop my understanding of implementing algorithms such as a simple trajectory calculation for a mortar projectile.
-[itch.io page](https://ember44.itch.io/flower-defense) and [github](https://github.com/Catpotato42/Farming_Tower)
+
+Building this game showed me how helpful designing every aspect of your planned system can make everything fall into place. I learned this both ways: on the positive end of this we were able to build out the actual game completely because we had a clear vision and figured out how to make the grid system work with everything else in advance. However, I also had immense trouble with everything interactivity related like upgrades because I had overwritten the player camera in the wrong way to create an isometric camera and caused click event locations to be offset in a very convoluted way from the actual location you clicked.

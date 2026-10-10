@@ -16,6 +16,6 @@ order: 4
 From January to February 2026, I worked on an overlay program in C# for Valorant that responds to in game events.
 
 Using the basic functions of C# .NET, I created a borderless window that sits on top of Valorant, checking every half second for a line of pixels matching colors that show up in a specific region 
-when the user gets a kill or switches weapons. [github](https://github.com/Catpotato42/valorant-cosmetic-overlay)
+when the user gets a kill or switches weapons.
 
 [youtube video showcase](https://www.youtube.com/watch?v=ESXkvh8fS-U)

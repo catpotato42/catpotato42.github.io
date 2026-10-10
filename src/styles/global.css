@@ -29,7 +29,8 @@ main > h1, main > p, main > dl, main > blockquote, header p { max-width: 72ch; }
 a { color: var(--green); }
 img, video { max-width: 100%; height: auto; }
 .meta { color: var(--grey2); }
-.stack { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; color: var(--aqua); }
+.stack { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; color: var(--aqua); }
+.stack li { border: 1px solid var(--bg3); border-radius: 3px; padding: 0 0.4rem; font-size: 0.875rem; }
 .status { color: var(--grey2); }
 .status.in-progress { color: var(--yellow); }
 
@@ -40,9 +41,13 @@ button.addr, button.copy {
   background: none; border: 0; padding: 0;
   font: inherit; color: var(--grey2); cursor: pointer;
 }
-/* keep the address selectable; it is the fallback when the clipboard API is blocked */
-button.addr { color: var(--fg); overflow-wrap: anywhere; text-align: left; user-select: text; }
-button.addr:hover, button.addr:focus-visible { color: var(--green); }
+/* keep the address selectable; it is the fallback when the clipboard API is blocked.
+   Green marks it as interactive, no underline separates it from a real link. */
+button.addr {
+  color: var(--green); text-decoration: none;
+  overflow-wrap: anywhere; text-align: left; user-select: text;
+}
+button.addr:hover, button.addr:focus-visible { text-decoration: underline dashed; text-underline-offset: 3px; }
 button.copy {
   display: inline-flex; align-items: center; justify-content: center;
   width: 1.75rem; height: 1.75rem;
@@ -57,7 +62,7 @@ button.copy:hover, button.copy:focus-visible { color: var(--fg); border-color: v
 /* project list: two across when the viewport allows, one when it does not */
 .projects {
   list-style: none; padding: 0; margin: 2rem 0 0;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr)); gap: 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr)); gap: 1rem;
 }
 .projects > li {
   display: flex; flex-direction: column;
@@ -83,15 +88,16 @@ dl.meta {
 dl.meta dt { color: var(--grey2); }
 dl.meta dt::after { content: ':'; }
 dl.meta dd { margin: 0; color: var(--fg); overflow-wrap: anywhere; }
+dl.meta dd.links { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
 
 /* cover and clips share one row, as they did on the old site */
 .media {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
   gap: 1rem; margin: 1.5rem 0;
 }
 /* phone screenshots are portrait, so they want narrower columns than .media */
 .shots {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
   gap: 0.75rem; margin: 1.5rem 0;
 }
 .media img, .media video, .shots img {
