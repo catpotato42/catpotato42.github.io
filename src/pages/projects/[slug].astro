@@ -47,7 +47,7 @@ const strip = (u: string) => u.replace(/^https?:\/\//, '');
   )}
   {p.data.shots.length > 0 && (
     <div class="shots">
-      {p.data.shots.map((s) => <Image src={s.src} alt={s.alt} />)}
+      {p.data.shots.map((s) => <Image src={s.src} alt={s.alt} width={300} densities={[1, 2]} />)}
     </div>
   )}
 </Base>

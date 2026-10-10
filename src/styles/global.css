@@ -85,9 +85,14 @@ dl.meta dt::after { content: ':'; }
 dl.meta dd { margin: 0; color: var(--fg); overflow-wrap: anywhere; }
 
 /* cover and clips share one row, as they did on the old site */
-.media, .shots {
+.media {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1rem; margin: 1.5rem 0;
+}
+/* phone screenshots are portrait, so they want narrower columns than .media */
+.shots {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem; margin: 1.5rem 0;
 }
 .media img, .media video, .shots img {
   display: block; width: 100%; border: 1px solid var(--bg3); background: var(--bg0);
