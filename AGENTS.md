@@ -50,6 +50,6 @@ not committed.
 
 ### Design
 
-Everforest dark medium only. No light mode, no theme toggle, no client JS.
+Everforest dark medium only.
 Tokens are defined in `src/styles/global.css`; do not add accents outside them.
 Monospace throughout, measure capped at 72ch, line-height 1.6.
